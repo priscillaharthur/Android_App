@@ -36,7 +36,7 @@
 
             //login new user
             if ($stmt->execute()) {
-              $stmt= $conn->prepare("SELECT Id,username, fullname,email, password FROM users WHERE usernamw =?");
+              $stmt= $conn->prepare("SELECT Id, username, fullname, email, password FROM users WHERE username = ?");
               $stmt ->bind_params("s", $username);
               $stmt->execute();
               $stmt->bind_params("issss", $Id, $username, $fullname, $email, $password);
@@ -51,7 +51,6 @@
               'password' => $password
             );
             $stmt->close();
-
             $response ['error'] = true;
             $response ['message']= "User registered successfully";
             $response['user']= $user;
@@ -69,7 +68,6 @@
         default:
         $response ['error'] = true;
         $response ['message']= "Invalid Api call";
-
       }
     }
 
